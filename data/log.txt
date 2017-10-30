@@ -1,0 +1,30 @@
+Visualization Library v2.0.0-b4 [f32]
+Oct 25 2017 - 21:34:25 - GCC compiler [DEBUG] [x64]
+
+ --- Environment ---
+VL_LOGFILE_PATH <not present>
+VL_DATA_PATH <not present>
+VL_VERBOSITY_LEVEL <not present>
+VL_CHECK_GL_STATES <not present>
+
+ --- Global Settings --- 
+Log file  = log.txt
+Data path = ../data
+Verbosity level = NORMAL
+Check OpenGL States = YES
+
+******* particles_system *******
+
+Applet info: particles_system
+Keys:
+- Escape: quits the application.
+- T:  enables the TrackballManipulator.
+- F:  enables the GhostCameraManipulator (use A/D S/W keys).
+- F1: toggles fullscreen mode if supported.
+- F5: saves a screenshot of the current OpenGL window.
+- C:  toggles the continuous update of the OpenGL window.
+- U:  force update of the OpenGL window.
+
+glGetError() [/media/Data/programmation/cpp/projects/VisualizationLibrary/src/vlGraphics/DrawTransformFeedback.hpp:104]: Invalid operation
+- If you are using geometry instancing in conjunction with display lists you will have to disable one of them.
+- If you are using OpenGL ES you must NOT use GL_QUADS, GL_QUAD_STRIP and GL_POLYGON primitive types.

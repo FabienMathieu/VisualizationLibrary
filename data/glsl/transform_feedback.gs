@@ -4,19 +4,32 @@
 /*  All rights reserved.                                                              */
 /*                                                                                    */
 /*  This file is part of Visualization Library                                        */
-/*  http://visualizationlibrary.org                                                   */
+/*  http://www.visualizationlibrary.org                                               */
 /*                                                                                    */
 /*  Released under the OSI approved Simplified BSD License                            */
 /*  http://www.opensource.org/licenses/bsd-license.php                                */
 /*                                                                                    */
 /**************************************************************************************/
 
-// Standard VL uniforms
+#version 330 core
 
-// <automatic>
-uniform mat4 vl_WorldMatrix;
-uniform mat4 vl_ModelViewMatrix;
-uniform mat4 vl_ProjectionMatrix;
-uniform mat4 vl_ModelViewProjectionMatrix;
-uniform mat3 vl_NormalMatrix;
+layout(triangles) in;
+layout(points, max_vertices = 1) out;
 
+flat out int normale;
+
+void main(void)
+{
+	/*vec3 a = normalize((gl_in[1].gl_Position - gl_in[0].gl_Position).xyz);
+	vec3 b = normalize((gl_in[2].gl_Position - gl_in[0].gl_Position).xyz);
+	normale = normalize(cross(a, b));*/
+	normale = gl_PrimitiveIDIn;
+	
+	//for(int i = 0; i < 3; ++i)
+	//{
+		gl_Position = gl_in[0].gl_Position;
+		EmitVertex();
+	//}
+	
+	EndPrimitive();
+}
