@@ -3,7 +3,7 @@
 /*  Visualization Library                                                             */
 /*  http://www.visualizationlibrary.org                                               */
 /*                                                                                    */
-/*  Copyright (c) 2005-2010, Michele Bosi                                             */
+/*  Copyright (c) 2005-2017, Michele Bosi, Fabien Mathieu                             */
 /*  All rights reserved.                                                              */
 /*                                                                                    */
 /*  Redistribution and use in source and binary forms, with or without modification,  */
@@ -62,9 +62,9 @@ class App_GLSL_TransformFeedback: public BaseDemo
 	};
 
 	enum {
-	   VA_Type = VA_MaxAttribCount + 1,
-	   VA_Velocity = VA_MaxAttribCount + 2,
-	   VA_Lifetime = VA_MaxAttribCount + 3
+       VA_Type = VA_Position + 1,
+       VA_Velocity = VA_Position + 2,
+       VA_Lifetime = VA_Position + 3
 	};
 
 	class SimpleDrawArraysCallback : public ActorEventCallback 
@@ -79,7 +79,7 @@ class App_GLSL_TransformFeedback: public BaseDemo
           virtual void onActorRenderStarted(Actor* actor, real, const Camera*, Renderable*, const Shader* shader, int) {
              const GLSLProgram* program = shader->glslProgram();
              const Geometry* geometry = actor->lod(0)->as< Geometry >();
-         if(geometry && geometry->vertexAttribArray(VA_Position) && geometry->vertexAttribArray(VA_Position) ->bufferObject() &&
+         if(geometry && geometry->vertexAttribArray(VA_Position) && geometry->vertexAttribArray(VA_Position)->bufferObject() &&
                  program && program->handle() && program->linked()) {
                mGLContext->useGLSLProgram(program);
                glBindBuffer(GL_ARRAY_BUFFER, geometry->vertexAttribArray(VA_Position)->bufferObject()->handle());
@@ -120,7 +120,7 @@ public:
 	}
 
     // Generates the actual extrusion
-    vl::Extrusion extrusion;
+  /**  vl::Extrusion extrusion;
 
     // Define the silhouette to be extruded: 24 sided circle
     const int sides = 24;
@@ -151,17 +151,17 @@ public:
     vl::ref<vl::Effect> effect = new vl::Effect;
     effect->shader()->setRenderState( new vl::Light, 0 );
     effect->shader()->enable(vl::EN_LIGHTING);
-    effect->shader()->enable(vl::EN_DEPTH_TEST);
+    effect->shader()->enable(vl::EN_DEPTH_TEST);*/
 
     // Generates the extrusion.
-    vl::ref<vl::Geometry> geom = extrusion.extrude();
+    /**vl::ref<vl::Geometry> geom = extrusion.extrude();
     sceneManager()->tree()->addActor( geom.get(), effect.get(), NULL );
 
     // Utility function that visualizes the extrusion path.
     showPath(extrusion.positionPath(),vl::red);
 
 
-    trackball()->setPivot(vl::vec3(0.0f, 0.0f, 0.0f));
+    trackball()->setPivot(vl::vec3(0.0f, 0.0f, 0.0f));*/
 
     Log::notify(appletInfo());
 
@@ -193,7 +193,7 @@ public:
 
     // First particule
     particlesType[0] = PARTICLE_TYPE_LAUNCHER;
-    particlesPosition[0] = vec3(1.0f, 1.0f, 1.0f);  //!< Careful -> for test
+    particlesPosition[0] = vec3(0.0f, 0.0f, 0.0f);  //!< Careful -> for test
     particlesVelocity[0] = vec3(0.0f, 0.0001f, 0.0f);
     particlesLifetime[0] = 0.0f;
 
@@ -232,10 +232,10 @@ public:
     effect1stParticle->shader()->gocPointSize()->set(3.0f);
 
     vl::ref< vl::Geometry > geom1stParticle = new vl::Geometry;
-    vl::ref< vl::DrawArrays > drawArrays = new vl::DrawArrays(vl::PT_POINTS, 0, 1);
+    vl::ref< vl::DrawArrays > drawArrays1stParticle = new vl::DrawArrays(vl::PT_POINTS, 0, 1);
     geom1stParticle->setVertexArray(particlesBufferPosition[0].get());
 
-    geom1stParticle->drawCalls().push_back(drawArrays.get());
+    geom1stParticle->drawCalls().push_back(drawArrays1stParticle.get());
 
     sceneManager()->tree()->addActor(geom1stParticle.get(), effect1stParticle.get(), nullptr);
 
@@ -253,7 +253,7 @@ public:
     transformFeedback2->addArray(particlesBufferLifetime[1].get());
 
     // First Rendering geometry creation (to initialize and fill transform feedback)
-    /*ref< Geometry > geom = new Geometry();
+    ref< Geometry > geom = new Geometry();
 
     geom->setVertexAttribArray(VA_Position, particlesBufferPosition[0].get());
     geom->setVertexAttribArray(VA_Type, particlesBufferType[0].get());
@@ -264,9 +264,11 @@ public:
 
     geom->drawCalls().push_back(drawArrays.get());
 
-    ref< Actor > actor = sceneManager()->tree()->addActor(geom.get(), fx1.get(), nullptr);*/
+    ref< Actor > actor = sceneManager()->tree()->addActor(geom.get(), fx2.get(), nullptr);
 
-    ref< SimpleDrawArraysCallback > drawArraysCallback = new SimpleDrawArraysCallback(openglContext());
+
+   /* ref< SimpleDrawArraysCallback > drawArraysCallback = new SimpleDrawArraysCallback(openglContext());
+    actor->actorEventCallbacks()->push_back(drawArraysCallback.get());*/
 
 
     /* On créé 3 géometries. Les deux premieres servent à faire un rendu hors ecran pour mettre à jour les particules.
@@ -276,7 +278,7 @@ public:
      *
      */
 
-    ref< Geometry > geomToRender1 = new Geometry();
+   /** ref< Geometry > geomToRender1 = new Geometry();
     ref< Geometry > geomToRender2 = new Geometry();
 
     ref< DrawTransformFeedback > dtf1 = new DrawTransformFeedback(PT_POINTS, transformFeedback1.get());
@@ -294,14 +296,14 @@ public:
     ref< Actor > actor = sceneManager()->tree()->addActor(geomToRender1.get(), fx1.get(), nullptr);
     sceneManager()->tree()->addActor(geomToRender2.get(), fx2.get(), nullptr);
 
-    actor->actorEventCallbacks()->push_back(drawArraysCallback.get());
+    actor->actorEventCallbacks()->push_back(drawArraysCallback.get());*/
     
     mTime.start();
 
   }
 
   // Utility function to display a path
-  void showPath(const std::vector<vl::fvec3>& ctrl_points, const vl::fvec4& color)
+  /*void showPath(const std::vector<vl::fvec3>& ctrl_points, const vl::fvec4& color)
   {
     // generate line geometry with lines and points
     vl::ref<vl::Geometry>   geom       = new vl::Geometry;
@@ -320,7 +322,7 @@ public:
     effect->setRenderRank(1); // always draw over the pipe
 
     sceneManager()->tree()->addActor( geom.get(), effect.get(), NULL );
-  }
+  }*/
 
   void createRandomTexture(unsigned int size) 
   {
@@ -366,10 +368,10 @@ public:
       ref<GLSLGeometryShader> transformFeedback_gs = new GLSLGeometryShader("/glsl/ps_update.gs");
       glsl->attachShader(transformFeedback_vs.get());
       glsl->attachShader(transformFeedback_gs.get());
-      glsl->bindAttribLocation(0, "Type");
-      glsl->bindAttribLocation(1, "Position");
-      glsl->bindAttribLocation(2, "Velocity");
-      glsl->bindAttribLocation(3, "Age");
+      glsl->bindAttribLocation(vl::VA_Position, "vl_VertexPosition");
+      glsl->bindAttribLocation(vl::VA_Position + 1, "Type");
+      glsl->bindAttribLocation(vl::VA_Position + 2, "Velocity");
+      glsl->bindAttribLocation(vl::VA_Position + 3, "Age");
       mUniformDeltaTimeMillis = glsl->gocUniform("gDeltaTimeMillis");
       mUniformTime = glsl->gocUniform("gTime");
       glsl->gocUniform("gRandomTexture")->setUniform(0);
@@ -411,6 +413,8 @@ public:
       fx2->shader()->setRenderState(transformFeedback2.get());
       glsl->setTransformFeedback(transformFeedback2.get());
 
+      transformFeedback2->queryWrittenPrimitive();
+
       transformFeedback1->set(PT_POINTS);
       transformFeedback2->set(PT_POINTS);
 
@@ -432,12 +436,25 @@ public:
 
     mUniformTime->setUniform(time);	// Maybe not the best idea
 
-    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
+    transformFeedback2->updateArray(particlesBufferPosition[1].get());
+
+    //unsigned int writtenPrimitives = transformFeedback2->getWrittenPrimitives();
+
+    //defLogger()->error("Written primitives : " + String::fromUInt(writtenPrimitives) + "\n");
+
+    for(unsigned int i = 0; i < particlesBufferPosition[1]->size(); ++i)
+    {
+        defLogger()->error("position " + String::fromUInt(i) + " : (" + String::fromDouble(particlesBufferPosition[1]->at(i).x()) +
+                                                                   ", " + String::fromDouble(particlesBufferPosition[1]->at(i).y()) +
+                                                                   ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
+    }
+
+    /**drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
 
 	currentBufferObject = currentTransformFeedback;
 	currentTransformFeedback = (currentTransformFeedback + 1) & 0x1;
 
-    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);
+    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);*/
   }
   
   void keyReleaseEvent(unsigned short, EKey key)

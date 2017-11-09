@@ -248,13 +248,14 @@ namespace vl
     Matrix2& transpose()
     {
       T_Scalar tmp;
-      for(int i=0; i<2; ++i)
+      for(int i=0; i<2; ++i) {
         for(int j=i; j<2; ++j)
         {
           tmp = e(j,i);
           e(j,i) = e(i,j);
           e(i,j) = tmp;
         }
+      }
         return *this;
     }
     //-----------------------------------------------------------------------------

@@ -311,13 +311,14 @@ namespace vl
     Matrix3& transpose()
     {
       T_Scalar tmp;
-      for(int i=0; i<3; ++i)
+      for(int i=0; i<3; ++i) {
         for(int j=i; j<3; ++j)
         {
           tmp = e(j,i);
           e(j,i) = e(i,j);
           e(i,j) = tmp;
         }
+      }
         return *this;
     }
     //-----------------------------------------------------------------------------
