@@ -43,6 +43,8 @@
 #include <array>
 #include <random>
 
+#include <iostream>
+
 using namespace vl;
 
 constexpr unsigned int const MAX_PARTICLES = 100;
@@ -237,7 +239,7 @@ public:
 
     geom1stParticle->drawCalls().push_back(drawArrays1stParticle.get());
 
-    sceneManager()->tree()->addActor(geom1stParticle.get(), effect1stParticle.get(), nullptr);
+    //sceneManager()->tree()->addActor(geom1stParticle.get(), effect1stParticle.get(), nullptr);
 
     transformFeedback1->setTransformFeedbackBufferMode(BM_SeparateAttribs);
     transformFeedback2->setTransformFeedbackBufferMode(BM_SeparateAttribs);
@@ -399,6 +401,7 @@ public:
       fx1->shader()->setRenderState(glsl.get());
 
       transformFeedback1 = fx1->shader()->gocTransformFeedback();
+      transformFeedback1->queryWrittenPrimitive();
       fx1->shader()->setRenderState(transformFeedback1.get());
       glsl->setTransformFeedback(transformFeedback1.get());
 
@@ -410,10 +413,11 @@ public:
       fx2->shader()->setRenderState(glsl.get());
 
       transformFeedback2 = fx2->shader()->gocTransformFeedback();
+      transformFeedback2->queryWrittenPrimitive();
       fx2->shader()->setRenderState(transformFeedback2.get());
       glsl->setTransformFeedback(transformFeedback2.get());
 
-      transformFeedback2->queryWrittenPrimitive();
+      //transformFeedback2->queryWrittenPrimitive();
 
       transformFeedback1->set(PT_POINTS);
       transformFeedback2->set(PT_POINTS);
@@ -436,18 +440,18 @@ public:
 
     mUniformTime->setUniform(time);	// Maybe not the best idea
 
-    transformFeedback2->updateArray(particlesBufferPosition[1].get());
+    /// transformFeedback2->updateArray(particlesBufferPosition[1].get());
 
     //unsigned int writtenPrimitives = transformFeedback2->getWrittenPrimitives();
 
     //defLogger()->error("Written primitives : " + String::fromUInt(writtenPrimitives) + "\n");
 
-    for(unsigned int i = 0; i < particlesBufferPosition[1]->size(); ++i)
+    /*for(unsigned int i = 0; i < transformFeedback2->getWrittenPrimitives(); ++i)
     {
         defLogger()->error("position " + String::fromUInt(i) + " : (" + String::fromDouble(particlesBufferPosition[1]->at(i).x()) +
                                                                    ", " + String::fromDouble(particlesBufferPosition[1]->at(i).y()) +
                                                                    ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
-    }
+    }*/
 
     /**drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
 
@@ -459,7 +463,18 @@ public:
   
   void keyReleaseEvent(unsigned short, EKey key)
   {
-	if(key == Key_T)
+      if(key == Key_A) {
+         //transformFeedback2->queryWrittenPrimitive();
+         unsigned int writtenPrimitives = transformFeedback2->getWrittenPrimitives();
+         std::cout << "written primitives : " << writtenPrimitives << std::endl;
+         for(unsigned int i = 0; i < writtenPrimitives; ++i)
+             {
+                 defLogger()->error("position " + String::fromUInt(i) + " : (" + String::fromDouble(particlesBufferPosition[1]->at(i).x()) +
+                                                                            ", " + String::fromDouble(particlesBufferPosition[1]->at(i).y()) +
+                                                                            ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
+             }
+      }
+      else if(key == Key_T)
 	{
 		
 		/*std::list< String > varyings;
@@ -474,8 +489,8 @@ public:
 		tf->addArray(normales.get());*/
 				
 		
-		ref<Geometry> geom = new Geometry;
-		geom->setObjectName("Pyramid");
+        /** ref<Geometry> geom = new Geometry;
+        geom->setObjectName("Pyramid");*/
 		
 		//particle1
 		

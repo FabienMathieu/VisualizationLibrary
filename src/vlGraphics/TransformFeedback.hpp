@@ -166,7 +166,7 @@ namespace vl
 			unsigned int getWrittenPrimitives()
 			{
 				unsigned int writtenPrimitives;
-				glGetQueryObjectuiv(mHandleQuery, GL_QUERY_RESULT, &writtenPrimitives);
+                glGetQueryObjectuiv(mHandleQuery, GL_QUERY_RESULT, &writtenPrimitives);
 				return writtenPrimitives;
 			}
 			
