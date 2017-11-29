@@ -54,7 +54,7 @@ void main()
     Age1 = Age;
     EmitVertex();
     EndPrimitive();
-  } else {
+  }/* else {
     float DeltaTimeSecs = gDeltaTimeMillis / 1000.0f;
     float t1 = Age0[0] / 1000.0f;
     float t2 = Age / 1000.0f;
@@ -90,5 +90,5 @@ void main()
         EndPrimitive();
       }
     }
-  }
+  }*/
 }

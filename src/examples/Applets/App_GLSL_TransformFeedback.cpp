@@ -465,13 +465,16 @@ public:
   {
       if(key == Key_A) {
          //transformFeedback2->queryWrittenPrimitive();
+         transformFeedback2->updateArrays();
          unsigned int writtenPrimitives = transformFeedback2->getWrittenPrimitives();
          std::cout << "written primitives : " << writtenPrimitives << std::endl;
          for(unsigned int i = 0; i < writtenPrimitives; ++i)
              {
-                 defLogger()->error("position " + String::fromUInt(i) + " : (" + String::fromDouble(particlesBufferPosition[1]->at(i).x()) +
-                                                                            ", " + String::fromDouble(particlesBufferPosition[1]->at(i).y()) +
-                                                                            ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
+                 defLogger()->error("velocity " + String::fromUInt(i) + " : (" + String::fromDouble(particlesBufferVelocity[1]->at(i).x()) +
+                                                                            ", " + String::fromDouble(particlesBufferVelocity[1]->at(i).y()) +
+                                                                            ", " + String::fromDouble(particlesBufferVelocity[1]->at(i).z()) + ")\n");
+
+                 defLogger()->error("type " + String::fromUInt(i) + " : " + String::fromDouble(particlesBufferType[1]->at(i)) + "\n");
              }
       }
       else if(key == Key_T)
