@@ -280,7 +280,7 @@ public:
      *
      */
 
-   /** ref< Geometry > geomToRender1 = new Geometry();
+    ref< Geometry > geomToRender1 = new Geometry();
     ref< Geometry > geomToRender2 = new Geometry();
 
     ref< DrawTransformFeedback > dtf1 = new DrawTransformFeedback(PT_POINTS, transformFeedback1.get());
@@ -295,10 +295,10 @@ public:
     geomToRender2->drawCalls().push_back(dtf2.get());
 
 
-    ref< Actor > actor = sceneManager()->tree()->addActor(geomToRender1.get(), fx1.get(), nullptr);
-    sceneManager()->tree()->addActor(geomToRender2.get(), fx2.get(), nullptr);
+    sceneManager()->tree()->addActor(geomToRender1.get(), mRenderingEffect.get(), nullptr);
+    sceneManager()->tree()->addActor(geomToRender2.get(), mRenderingEffect.get(), nullptr);
 
-    actor->actorEventCallbacks()->push_back(drawArraysCallback.get());*/
+    //actor->actorEventCallbacks()->push_back(drawArraysCallback.get());
     
     mTime.start();
 
@@ -388,9 +388,9 @@ public:
       renderingGlsl->attachShader(rendering_fs.get());
       renderingGlsl->gocUniform("color")->setUniform(vec3(1.0f, 0.0f, 0.0f));
 
-      ref< Effect > renderingEffect = new Effect;
-      renderingEffect->shader()->enable(EN_DEPTH_TEST);
-      renderingEffect->shader()->setRenderState(renderingGlsl.get());
+      mRenderingEffect = new Effect;
+      mRenderingEffect->shader()->enable(EN_DEPTH_TEST);
+      mRenderingEffect->shader()->setRenderState(renderingGlsl.get());
 
 
       fx1 = new Effect;
@@ -453,12 +453,12 @@ public:
                                                                    ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
     }*/
 
-    /**drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
+    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
 
 	currentBufferObject = currentTransformFeedback;
 	currentTransformFeedback = (currentTransformFeedback + 1) & 0x1;
 
-    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);*/
+    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);
   }
   
   void keyReleaseEvent(unsigned short, EKey key)
@@ -561,6 +561,8 @@ protected:
 
     ref< Effect > fx1;
     ref< Effect > fx2;
+
+    ref< Effect > mRenderingEffect;
 
 	Time mTime;
 

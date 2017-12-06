@@ -1,5 +1,5 @@
 Visualization Library v2.0.0-b4 [f32]
-Nov 29 2017 - 21:00:59 - GCC compiler [DEBUG] [x64]
+Dec  5 2017 - 22:31:08 - GCC compiler [DEBUG] [x64]
 
  --- Environment ---
 VL_LOGFILE_PATH <not present>
@@ -25,128 +25,12 @@ Keys:
 - C:  toggles the continuous update of the OpenGL window.
 - U:  force update of the OpenGL window.
 
-FPS=2076.0
-FPS=6833.3
-velocity 0 : (0.015391, 0.047463, -0.003226)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6681.3
-FPS=6399.1
-velocity 0 : (0.025861, 0.040612, -0.013485)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6757.0
-FPS=6609.4
-FPS=6876.2
-velocity 0 : (0.030509, 0.039013, -0.006868)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6738.3
-FPS=6816.4
-FPS=6853.3
-velocity 0 : (0.029633, 0.038950, 0.010234)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6660.2
-FPS=6845.5
-FPS=6582.5
-FPS=6102.4
-velocity 0 : (0.024427, 0.033340, 0.028139)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6902.7
-FPS=6885.7
-velocity 0 : (0.022378, 0.032225, 0.030997)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6901.7
-velocity 0 : (0.021854, 0.032886, 0.030675)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6858.9
-FPS=6949.0
-velocity 0 : (0.020693, 0.034282, 0.029942)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.020693, 0.034282, 0.029942)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6865.0
-velocity 0 : (0.020050, 0.035018, 0.029525)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.020050, 0.035018, 0.029525)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6235.2
-velocity 0 : (0.019369, 0.035769, 0.029076)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.019369, 0.035769, 0.029076)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.019369, 0.035769, 0.029076)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.019369, 0.035769, 0.029076)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6576.5
-velocity 0 : (0.018677, 0.036505, 0.028611)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.018677, 0.036505, 0.028611)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.018677, 0.036505, 0.028611)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.018677, 0.036505, 0.028611)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6378.9
-velocity 0 : (0.017916, 0.037281, 0.028092)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.017916, 0.037281, 0.028092)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.017916, 0.037281, 0.028092)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.017916, 0.037281, 0.028092)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6539.8
-velocity 0 : (0.017143, 0.038038, 0.027554)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-velocity 0 : (0.017143, 0.038038, 0.027554)
-type 0 : 1.000000
-velocity 1 : (0.000000, 0.000100, 0.000000)
-type 1 : 0.000000
-FPS=6629.4
+GLSLProgram::linkProgram() failed! (vl::GLSLProgram)
+Geometry info
+-------------
+(0) : error C6022: No input primitive type
+(0) : error C6029: No output primitive type
+GLSLProgram::useProgram() failed! GLSL program not linked! (vl::OpenGLContext)
+glGetError() [/media/Data/programmation/cpp/projects/VisualizationLibrary/src/vlGraphics/DrawTransformFeedback.hpp:104]: Invalid operation
+- If you are using geometry instancing in conjunction with display lists you will have to disable one of them.
+- If you are using OpenGL ES you must NOT use GL_QUADS, GL_QUAD_STRIP and GL_POLYGON primitive types.
