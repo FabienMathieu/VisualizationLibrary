@@ -296,7 +296,7 @@ public:
 
 
     sceneManager()->tree()->addActor(geomToRender1.get(), mRenderingEffect.get(), nullptr);
-    sceneManager()->tree()->addActor(geomToRender2.get(), mRenderingEffect.get(), nullptr);
+    //sceneManager()->tree()->addActor(geomToRender2.get(), mRenderingEffect.get(), nullptr);
 
     //actor->actorEventCallbacks()->push_back(drawArraysCallback.get());
     
@@ -390,7 +390,7 @@ public:
 
       mRenderingEffect = new Effect;
       mRenderingEffect->shader()->enable(EN_DEPTH_TEST);
-      mRenderingEffect->shader()->setRenderState(renderingGlsl.get());
+      //mRenderingEffect->shader()->setRenderState(renderingGlsl.get());
 
 
       fx1 = new Effect;
@@ -430,6 +430,9 @@ public:
 
       transformFeedback1->setTransformFeedbackVaryings(varyings);
       transformFeedback2->setTransformFeedbackVaryings(varyings);
+
+      transformFeedback1->setObjectName("tf1");
+      transformFeedback1->setObjectName("tf2");
   }
 
 
@@ -453,12 +456,12 @@ public:
                                                                    ", " + String::fromDouble(particlesBufferPosition[1]->at(i).z()) + "\n");
     }*/
 
-    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
+  /**  drawTransformFeedbacks[currentTransformFeedback]->setEnabled(false);
 
 	currentBufferObject = currentTransformFeedback;
 	currentTransformFeedback = (currentTransformFeedback + 1) & 0x1;
 
-    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);
+    drawTransformFeedbacks[currentTransformFeedback]->setEnabled(true);*/
   }
   
   void keyReleaseEvent(unsigned short, EKey key)
