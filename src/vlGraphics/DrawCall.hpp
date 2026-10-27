@@ -34,6 +34,7 @@
 
 #include <vlGraphics/Array.hpp>
 #include <vlGraphics/TriangleIterator.hpp>
+#include <vlGraphics/LineIterator.hpp>
 #include <vlGraphics/IndexIterator.hpp>
 #include <vlGraphics/PatchParameter.hpp>
 
@@ -132,6 +133,10 @@ namespace vl
      * Basically the iterator tesselates in triangles any DrawCall of type: PT_TRIANGLES, PT_TRIANGLE_STRIP
      * PT_TRIANGLE_FAN, PT_POLYGON, PT_QUADS, PT_QUAD_STRIP. */
     virtual TriangleIterator triangleIterator() const = 0;
+
+    /**
+     * Returns a LineIterator used to iterate through the lines of a DrawCall. */
+    virtual LineIterator lineIterator() const = 0;
 
     /** 
      * Returns a IndexIterator used to iterate through the virtual indices of a DrawCall.

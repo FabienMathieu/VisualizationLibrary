@@ -35,6 +35,7 @@
 #include <vlGraphics/DrawCall.hpp>
 #include <vlGraphics/Array.hpp>
 #include <vlGraphics/TriangleIterator.hpp>
+#include <vlGraphics/LineIterator.hpp>
 #include <vlCore/Log.hpp>
 #include <vlCore/Say.hpp>
 #include <algorithm>
@@ -263,6 +264,8 @@ namespace vl
 
     TriangleIterator triangleIterator() const;
 
+    LineIterator lineIterator() const;
+
     IndexIterator indexIterator() const
     {
       ref< IndexIteratorElements<arr_type> > iie = new IndexIteratorElements<arr_type>;
@@ -367,6 +370,16 @@ namespace vl
           primitiveRestartEnabled(), primitive_restart_index );
     it->initialize();
     return TriangleIterator(it.get());
+  }
+//-----------------------------------------------------------------------------
+  template <class arr_type>
+  LineIterator MultiDrawElements<arr_type>::lineIterator() const
+  {
+      ref< LineIteratorMulti<arr_type> > it =
+        new LineIteratorMulti<arr_type>( &mBaseVertices, &mCountVector, mIndexBuffer.get(), primitiveType(),
+            primitiveRestartEnabled(), primitive_restart_index );
+      it->initialize();
+      return LineIterator(it.get());
   }
 //-----------------------------------------------------------------------------
 }
