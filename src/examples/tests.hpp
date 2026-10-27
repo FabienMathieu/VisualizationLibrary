@@ -91,6 +91,7 @@ BaseDemo* Create_App_Primitives();
 BaseDemo* Create_App_DrawCalls();
 BaseDemo* Create_App_VLX();
 BaseDemo* Create_App_Stereo();
+BaseDemo* Create_App_PickingLinesPoints();
 BaseDemo* Create_App_LineIterator();
 
 // win32 console for sdtout output
@@ -201,6 +202,7 @@ public:
       { "picking", Create_App_Picking(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,10), vl::vec3(0,0,0) },
       { "tessellation_shader", Create_App_TessellationShader(), 100, 100, 800, 800, vl::skyblue, vl::vec3(300,40,0), vl::vec3(1000,0,0) },
       { "stereo", Create_App_Stereo(), 100, 100, 800, 800, vl::lightgray, vl::vec3(0,2.5,15), vl::vec3(0,0,0) },
+      { "picking_lines_points", Create_App_PickingLinesPoints(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,18), vl::vec3(0,0,0) },
       { "line_iterator", Create_App_LineIterator(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,15), vl::vec3(0,0,0) },
       // { "mini_earth", Create_App_MiniEarth(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,4), vl::vec3(0,0,0) },
     };

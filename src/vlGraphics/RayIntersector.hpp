@@ -89,10 +89,11 @@ namespace vl
     VL_INSTRUMENT_CLASS(vl::RayIntersectionGeometry, RayIntersection)
 
   public:
-    RayIntersectionGeometry(): mGeometry(NULL), mDrawCalls(NULL), mTriangleIndex(-1)
+    RayIntersectionGeometry(): mGeometry(NULL), mDrawCalls(NULL), mTriangleIndex(-1), mNearestPoint(-1), mLineIndex(-1)
     {
       VL_DEBUG_SET_OBJECT_NAME()
       memset(mTriangle, 0xFF, sizeof(mTriangle));
+      memset(mLine, 0xFF, sizeof(mLine));
     }
 
     //! The intersected Geometry
@@ -105,8 +106,14 @@ namespace vl
     const DrawCall* drawCalls() const { return mDrawCalls; }
     //! The starting index of the intersected primitive inside drawCalls()
     int triangleIndex() const { return mTriangleIndex; }
+    //! The index of the intersected line segment inside drawCalls(), or for a triangle intersection the edge (1, 2 or 3) of the triangle nearest to the intersection point. -1 for point intersections.
+    int lineIndex() const { return mLineIndex; }
     //! An int[3] representing the indices of the intersected triangle.
     const int* triangle() const { return mTriangle; }
+    //! An int[2] representing the indices of the intersected line segment, or of the triangle edge nearest to the intersection point.
+    const int* line() const { return mLine; }
+    //! The index of the intersected point, or of the triangle vertex nearest to the intersection point. -1 for line intersections.
+    int nearestPoint() const { return mNearestPoint; }
 
     //! The intersected Geometry
     void setGeometry(Geometry* g) { mGeometry = g; }
@@ -116,6 +123,12 @@ namespace vl
     void setTriangleIndex(int t_idx) { mTriangleIndex = t_idx; }
     //! An int[3] representing the indices of the intersected triangle.
     void setTriangle(int a, int b, int c) { mTriangle[0] = a; mTriangle[1] = b; mTriangle[2] = c; }
+    //! See lineIndex()
+    void setLineIndex(int l_idx) { mLineIndex = l_idx; }
+    //! See line()
+    void setLine(int a, int b) { mLine[0] = a; mLine[1] = b; }
+    //! See nearestPoint()
+    void setNearestPoint(int a) { mNearestPoint = a; }
 
   protected:
     vec3 mIntersectionPoint;
@@ -123,6 +136,9 @@ namespace vl
     DrawCall* mDrawCalls;
     int mTriangleIndex;
     int mTriangle[3];
+    int mLine[2];
+    int mNearestPoint;
+    int mLineIndex;
     float mDistance;
   };
   //-----------------------------------------------------------------------------
@@ -135,7 +151,7 @@ namespace vl
     VL_INSTRUMENT_CLASS(vl::RayIntersector, Object)
 
   public:
-    RayIntersector()
+    RayIntersector() : mDistance(0.1)
     {
       VL_DEBUG_SET_OBJECT_NAME()
       mActors = new ActorCollection;
@@ -155,6 +171,11 @@ namespace vl
     const Frustum& frustum() const { return mFrustum; }
     //! The frustum in world coordinates used to cull the objects.
     void setFrustum(const Frustum& frustum) { mFrustum = frustum; }
+
+    //! The maximum distance (in world units) between the ray and a line segment or a point for them to be considered intersected. Default is 0.1.
+    real distance() const { return mDistance; }
+    //! The maximum distance (in world units) between the ray and a line segment or a point for them to be considered intersected. Default is 0.1.
+    void setDistance(real distance) { mDistance = distance; }
 
     //! The intersection points detected by the last intersect() call sorted according to their distance (the first one is the closest).
     const std::vector< ref<RayIntersection> >& intersections() const { return mIntersections; }
@@ -186,11 +207,20 @@ namespace vl
     template<class T>
     void intersectTriangle(const T& a, const T& b, const T& c, int ia, int ib, int ic, Actor*, Geometry* geom, DrawCall* prim, int prim_idx);
 
+    // T should be either fvec3-4 or dvec3-4
+    template<class T>
+    void intersectLine(const T& a, const T& b, int ia, int ib, Actor*, Geometry* geom, DrawCall* prim, int prim_idx);
+
+    // T should be either fvec3-4 or dvec3-4
+    template<class T>
+    void intersectPoint(const T& a, int ia, Actor*, Geometry* geom, DrawCall* prim, int prim_idx);
+
   protected:
     Frustum mFrustum;
     std::vector< ref<RayIntersection> > mIntersections;
     ref<ActorCollection> mActors;
     Ray mRay;
+    real mDistance;
   };
 }
 
