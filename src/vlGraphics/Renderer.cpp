@@ -328,10 +328,24 @@ const RenderQueue* Renderer::renderRaw(const RenderQueue* render_queue, Camera* 
         }
       #endif
 
+      if ( shader->glslProgram() && shader->glslProgram()->handle() && shader->glslProgram()->transformFeedback() )
+      {
+        shader->glslProgram()->transformFeedback()->beginTransformFeedback();
+      }
+
+      VL_CHECK_OGL()
+
       // --------------- Actor rendering ---------------
 
       // also compiles display lists and updates BufferObjects if necessary
       tok->mRenderable->render( actor, shader, camera, opengl_context );
+
+      VL_CHECK_OGL()
+
+      if ( shader->glslProgram() && shader->glslProgram()->handle() && shader->glslProgram()->transformFeedback() )
+      {
+        shader->glslProgram()->transformFeedback()->endTransformFeedback();
+      }
 
       VL_CHECK_OGL()
 

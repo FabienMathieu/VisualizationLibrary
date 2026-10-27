@@ -1005,6 +1005,8 @@ namespace vl
     RS_StencilOp,
     RS_GLSLProgram,
 
+    RS_TransformFeedback,
+
     RS_Light,
     RS_Light0 = RS_Light,
     RS_Light1,
@@ -1559,6 +1561,13 @@ namespace vl
     SilhouetteClosed, 
     SilhouetteOpen 
   } ESilhouetteMode;
+
+  //! Transform feedback buffer mode, see also TransformFeedback::setTransformFeedbackBufferMode()
+  typedef enum
+  {
+    BM_SeparateAttribs = GL_SEPARATE_ATTRIBS,
+    BM_InterleavedAttribs = GL_INTERLEAVED_ATTRIBS
+  } EBufferMode;
 }
 
 #endif
