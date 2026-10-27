@@ -91,6 +91,7 @@ BaseDemo* Create_App_Primitives();
 BaseDemo* Create_App_DrawCalls();
 BaseDemo* Create_App_VLX();
 BaseDemo* Create_App_Stereo();
+BaseDemo* Create_App_TransformManipulator();
 
 // win32 console for sdtout output
 #if defined(WIN32) && !defined(NDEBUG)
@@ -200,6 +201,7 @@ public:
       { "picking", Create_App_Picking(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,10), vl::vec3(0,0,0) },
       { "tessellation_shader", Create_App_TessellationShader(), 100, 100, 800, 800, vl::skyblue, vl::vec3(300,40,0), vl::vec3(1000,0,0) },
       { "stereo", Create_App_Stereo(), 100, 100, 800, 800, vl::lightgray, vl::vec3(0,2.5,15), vl::vec3(0,0,0) },
+      { "transform_manipulator", Create_App_TransformManipulator(), 100, 100, 800, 800, vl::black, vl::vec3(-20,10,10), vl::vec3(0,0,0) },
       // { "mini_earth", Create_App_MiniEarth(), 100, 100, 800, 800, vl::black, vl::vec3(0,0,4), vl::vec3(0,0,0) },
     };
 
