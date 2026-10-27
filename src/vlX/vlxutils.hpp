@@ -1119,6 +1119,7 @@ namespace vlX
     case vl::EN_POLYGON_STIPPLE: return "EN_POLYGON_STIPPLE";
     case vl::EN_POINT_SPRITE: return "EN_POINT_SPRITE";
     case vl::EN_PROGRAM_POINT_SIZE: return "EN_PROGRAM_POINT_SIZE";
+    case vl::EN_RASTERIZER_DISCARD: return "EN_RASTERIZER_DISCARD";
     case vl::EN_ALPHA_TEST: return "EN_ALPHA_TEST";
     case vl::EN_LIGHTING: return "EN_LIGHTING";
     case vl::EN_COLOR_SUM: return "EN_COLOR_SUM";
@@ -1160,6 +1161,7 @@ namespace vlX
     if( value.getIdentifier() == "EN_POLYGON_STIPPLE") return vl::EN_POLYGON_STIPPLE;
     if( value.getIdentifier() == "EN_POINT_SPRITE") return vl::EN_POINT_SPRITE;
     if( value.getIdentifier() == "EN_PROGRAM_POINT_SIZE") return vl::EN_PROGRAM_POINT_SIZE;
+    if( value.getIdentifier() == "EN_RASTERIZER_DISCARD") return vl::EN_RASTERIZER_DISCARD;
     if( value.getIdentifier() == "EN_ALPHA_TEST") return vl::EN_ALPHA_TEST;
     if( value.getIdentifier() == "EN_LIGHTING") return vl::EN_LIGHTING;
     if( value.getIdentifier() == "EN_COLOR_SUM") return vl::EN_COLOR_SUM;
