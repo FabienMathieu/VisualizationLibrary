@@ -55,10 +55,11 @@ namespace
   {
     // do nothing
   }
-  void vl_error_fn(png_structp /*png_ptr*/, png_const_charp error_msg)
+  void vl_error_fn(png_structp png_ptr, png_const_charp error_msg)
   {
-    // libpng longjmps to png_jmpbuf() once this returns
     Log::error( Say("libPNG: %s\n") << error_msg);
+    // return to the setjmp() in the *_guarded() functions below
+    png_longjmp(png_ptr, 1);
   }
   void vl_warning_fn(png_structp /*png_ptr*/, png_const_charp warning_msg)
   {
