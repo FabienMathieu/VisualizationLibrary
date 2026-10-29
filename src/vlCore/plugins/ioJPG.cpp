@@ -39,9 +39,7 @@
 extern "C"
 {
   #include "jpeglib.h"
-  #include "jconfig.h"
   #include "jerror.h"
-  #include "jmorecfg.h"
 }
 #include <setjmp.h>
 #include <cstdio>
@@ -446,9 +444,10 @@ ref<Image> vl::loadJPG(VirtualFile* file)
     VL_CHECK(cinfo.out_color_space == JCS_GRAYSCALE)
     img->allocate2D(cinfo.image_width, cinfo.image_height, 1, IF_LUMINANCE, IT_UNSIGNED_BYTE);
   }
-  else // JCS_RGB
+  else
   {
-    VL_CHECK(cinfo.out_color_space == JCS_RGB)
+    // libjpeg converts YCbCr (and the big gamut BG_RGB/BG_YCC spaces) to RGB
+    cinfo.out_color_space = JCS_RGB;
     img->allocate2D(cinfo.image_width, cinfo.image_height, 1, IF_RGB, IT_UNSIGNED_BYTE);
   }
 
